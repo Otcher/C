@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include "List.h"
 
+/*
+	Initializes the list
+*/
 list_a* lst_init(void* info)
 {
 	list_a* lst = malloc(sizeof(list_a));
@@ -24,6 +27,9 @@ list_a* lst_init(void* info)
 	return lst;
 }
 
+/*
+	"Destroys" the list by deleting every value from it
+*/
 void lst_destroy(list_a* lst)
 {
 	if (lst == NULL) return;
@@ -37,6 +43,9 @@ void lst_destroy(list_a* lst)
 	}
 }
 
+/*
+	Deletes a specific node from a given list
+*/
 void lst_delete(list_a* lst, node_a* node)
 {
 	if (lst == NULL || node == NULL)
@@ -62,7 +71,7 @@ void lst_delete(list_a* lst, node_a* node)
 		last->next = NULL;
 	}
 	/*
-		If it was just a 1 cell list
+		If it was just a 1 cell list (no nodes pointed by the before and next pointers)
 	*/
 	else
 	{
@@ -76,6 +85,9 @@ void lst_delete(list_a* lst, node_a* node)
 	node = NULL;
 }
 
+/*
+	Adds a node to the list (adds it after the last node)
+*/
 node_a* lst_addnode(list_a* lst, void *info)
 {
 	node_a* node = malloc(sizeof(node_a));
@@ -108,55 +120,58 @@ node_a* lst_addnode(list_a* lst, void *info)
 	}
 }
 
+/*
+	Returns the first node in a given list
+*/
 node_a* lst_getfirst(list_a* lst)
 {
 	return lst->first_node;
 }
 
+/*
+	Returns the last node in a given list
+*/
 node_a * lst_getlast(list_a * lst)
 {
 	return lst->last_node;
 }
 
+/*
+	Returns the next node in the list (if there is no node next it, the function will return NULL)
+*/
 node_a * lst_getnext(node_a * node)
 {
 	return node->next;
 }
 
+/*
+	Returns the previous node in the list (if there is no node before it, the function will return NULL)
+*/
 node_a * lst_getprev(node_a * node)
 {
 	return node->before;
 }
 
+/*
+	Returns the info of the node
+*/
 void * lst_getinfo(node_a * node)
 {
 	return node->info;
 }
 
+/*
+	Returns the length of a given list
+*/
 int lst_getlength(list_a * lst)
 {
 	return lst->cell_count;
 }
 
+/*
+	Returns the average of the nodes in the list
+*/
 int lst_getavg(list_a * lst)
 {
 	return lst->sum/lst->cell_count;
-}
-
-void print_nodes(node_a *node, list_a* lst)
-{
-	if (node == NULL)
-	{
-		printf("This list is empty\n");
-		return;
-	}
-
-	if (node->before == NULL) printf("{");
-	printf("%p, ", node->info);
-	if (node->next != NULL) print_nodes(node->next, lst);
-	else
-	{
-		printf("DONE}\n");
-		printf("sum: %d, cell count: %d\n", lst->sum, lst->cell_count);
-	}
 }

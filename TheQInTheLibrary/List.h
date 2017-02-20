@@ -1,18 +1,28 @@
 #ifndef DYN_LIST_H
 #define DYN_LIST_H
 
+/*
+	Node type struct
+*/
 typedef struct node {
 	struct node *before;
 	void *info;
 	struct node *next;
 } node_a;
 
+/*
+	List type struct
+*/
 typedef struct list {
 	struct node_a *first_node;
 	struct node_a *last_node;
 	int sum;
 	int cell_count;
 } list_a;
+
+/*
+	Functions
+*/
 
 list_a* lst_init(void *info);
 void lst_destroy(list_a* lst);
@@ -25,7 +35,5 @@ node_a* lst_getprev(node_a* node);
 void* lst_getinfo(node_a* node);
 int lst_getlength(list_a* lst);
 int lst_getavg(list_a* lst);
-
-void print_nodes(node_a *node, list_a* lst);
 
 #endif
