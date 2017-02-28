@@ -13,6 +13,12 @@
 typedef enum {DEAD = 0, ALIVE} cell_status;
 typedef enum { FALSE = 0, TRUE } boolean;
 
+/*
+	Nothing special here, just going through the array and printing every cell's status as explained below:
+	'.' = DEAD
+	'X' = ALIVE
+*/
+
 void PrintCells(int board[][BOARD_SIZE])
 {
 	for (int y = 0; y < BOARD_SIZE;y++)
@@ -25,6 +31,12 @@ void PrintCells(int board[][BOARD_SIZE])
 		printf("%c", '\n');
 	}
 }
+
+/*
+	Calculate the amount of alive cells around a specific cell
+	So I can use the data to detemine underpopulation, overpopulation, birth conditions
+	or basically if to kill, keep or give birth to a specific cell.
+*/
 
 int GetCellSum(int board[][BOARD_SIZE], int x, int y)
 {
