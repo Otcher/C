@@ -86,7 +86,9 @@ int main()
 	------------------------------*/
 	PrintCells(board);
 
-	while (TRUE)
+	boolean finished = FALSE;
+	
+	while (finished == FALSE)
 	{
 		memcpy(newBoard, board, sizeof(board));
 		for (int y = 0; y < BOARD_SIZE; y++)
@@ -112,6 +114,9 @@ int main()
 			}
 		}
 
+		if (memcmp(board, newBoard, sizeof(board)) == 0)
+			finished = TRUE;
+		
 		/*Copy the new board to the old one*/
 		memcpy(board, newBoard, sizeof(newBoard));
 
